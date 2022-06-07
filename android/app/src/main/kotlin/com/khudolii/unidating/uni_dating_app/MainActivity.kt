@@ -1,4 +1,4 @@
-package com.khudolii.unidating.uni_dating_app
+package com.khudolii.uni_dating_app
 
 import io.flutter.embedding.android.FlutterActivity
 
