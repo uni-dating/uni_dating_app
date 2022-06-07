@@ -32,6 +32,9 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  # ui
+  animated_gesture_detector: ^1.0.0
+
   # dev
   rxdart: ^0.27.2
 

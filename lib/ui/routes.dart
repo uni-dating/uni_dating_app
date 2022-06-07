@@ -7,6 +7,16 @@ Route<dynamic> _generateRoute(RouteSettings settings, BuildContext context) {
         settings: settings,
         builder: (context) => const SplashScreen(),
       );
+    case LoginScreen.routeName:
+      return MaterialPageRoute<dynamic>(
+        settings: settings,
+        builder: (context) => const LoginScreen(),
+      );
+    case MainInitScreen.routeName:
+      return MaterialPageRoute<dynamic>(
+        settings: settings,
+        builder: (context) => const MainInitScreen(),
+      );
     default:
       throw ArgumentError.value(
         settings.name,
