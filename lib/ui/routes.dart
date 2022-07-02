@@ -12,6 +12,11 @@ Route<dynamic> _generateRoute(RouteSettings settings, BuildContext context) {
         settings: settings,
         builder: (context) => const LoginScreen(),
       );
+    case SignupScreen.routeName:
+      return MaterialPageRoute<dynamic>(
+        settings: settings,
+        builder: (context) => const SignupScreen(),
+      );
     case MainInitScreen.routeName:
       return MaterialPageRoute<dynamic>(
         settings: settings,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uni_dating_app/initializer.dart';
 import 'package:uni_dating_app/ui/screens/auth/login.screen.dart';
 import 'package:uni_dating_app/ui/screens/auth/splash.screen.dart';
+import 'package:uni_dating_app/ui/screens/signup/signup.editprofile.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
 
 part 'routes.dart';
