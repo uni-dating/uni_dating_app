@@ -12,10 +12,10 @@ class EditProfileBloc extends Bloc {
   ///TODO(Andrii): get profile from backend
   Future<void> getProfile() async {
     _profile.add(
-      const ProfileModel(
+      ProfileModel(
         id: 0,
         username: 'My user name',
-        school: '1',
+        school: '1', links: [],
       ),
     );
   }

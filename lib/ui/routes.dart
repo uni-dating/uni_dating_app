@@ -7,15 +7,20 @@ Route<dynamic> _generateRoute(RouteSettings settings, BuildContext context) {
         settings: settings,
         builder: (context) => const SplashScreen(),
       );
-    case LoginScreen.routeName:
+    case LoginEmailScreen.routeName:
       return MaterialPageRoute<dynamic>(
         settings: settings,
-        builder: (context) => const LoginScreen(),
+        builder: (context) => const LoginEmailScreen(),
       );
-    case SignupScreen.routeName:
+    case LoginWelcomeScreen.routeName:
       return MaterialPageRoute<dynamic>(
         settings: settings,
-        builder: (context) => const SignupScreen(),
+        builder: (context) => const LoginWelcomeScreen(),
+      );
+    case ProfileEditScreen.routeName:
+      return MaterialPageRoute<dynamic>(
+        settings: settings,
+        builder: (context) => const ProfileEditScreen(),
       );
     case MainInitScreen.routeName:
       return MaterialPageRoute<dynamic>(
