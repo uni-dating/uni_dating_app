@@ -99,10 +99,7 @@ class GetProfileDateState extends State<GetProfileDate> {
               )),
           Container(
               height: 40,
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.4,
               margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -161,24 +158,23 @@ class GetProfileDateState extends State<GetProfileDate> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) =>
-                      AlertDialog(
-                        title: const Text('Enter Link Title'),
-                        content: TextField(
-                          controller: _linkTitleController,
-                        ),
-                        actions: [
-                          TextButton(
-                              child: const Text('Add'),
-                              onPressed: () {
-                                setState(() {
-                                  linkTitle = _linkTitleController.text;
-                                });
+                  builder: (context) => AlertDialog(
+                    title: const Text('Enter Link Title'),
+                    content: TextField(
+                      controller: _linkTitleController,
+                    ),
+                    actions: [
+                      TextButton(
+                          child: const Text('Add'),
+                          onPressed: () {
+                            setState(() {
+                              linkTitle = _linkTitleController.text;
+                            });
 
-                                Navigator.pop(context);
-                              })
-                        ],
-                      ),
+                            Navigator.pop(context);
+                          })
+                    ],
+                  ),
                 );
               },
               child: Text(
@@ -189,10 +185,7 @@ class GetProfileDateState extends State<GetProfileDate> {
         Container(
             margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
             height: 40,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width * 0.4,
+            width: MediaQuery.of(context).size.width * 0.4,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -202,24 +195,23 @@ class GetProfileDateState extends State<GetProfileDate> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) =>
-                      AlertDialog(
-                        title: const Text('Enter Link'),
-                        content: TextField(
-                          controller: _linkController,
-                        ),
-                        actions: [
-                          TextButton(
-                              child: const Text('Add'),
-                              onPressed: () {
-                                setState(() {
-                                  link = _linkController.text;
-                                });
+                  builder: (context) => AlertDialog(
+                    title: const Text('Enter Link'),
+                    content: TextField(
+                      controller: _linkController,
+                    ),
+                    actions: [
+                      TextButton(
+                          child: const Text('Add'),
+                          onPressed: () {
+                            setState(() {
+                              link = _linkController.text;
+                            });
 
-                                Navigator.pop(context);
-                              })
-                        ],
-                      ),
+                            Navigator.pop(context);
+                          })
+                    ],
+                  ),
                 );
               },
               child: Text(
@@ -248,7 +240,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                 // links.addAll({linkTitle: link});
 
                 setState(
-                      () {
+                  () {
                     this.links.add(new Link(linkTitle, link));
                     link = 'Link';
                     linkTitle = 'Title';
@@ -279,10 +271,7 @@ class GetProfileDateState extends State<GetProfileDate> {
       child: Column(
         children: [
           Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               child: Row(
                 children: [
                   IconButton(
@@ -292,10 +281,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                 ],
               )),
           Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.8,
             child: Row(
               children: [
                 Container(
@@ -304,7 +290,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                     margin: EdgeInsets.fromLTRB(0, 37, 35, 0),
                     child: TextButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          //backgroundColor: Colors.white,
                           padding: EdgeInsets.zero),
                       onPressed: () async {
                         final img = await ImagePicker()
@@ -361,10 +347,7 @@ class GetProfileDateState extends State<GetProfileDate> {
             ),
           ),
           Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.8,
               height: 44,
               margin: const EdgeInsets.fromLTRB(0, 39, 0, 0),
               child: TextField(
@@ -376,10 +359,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                     labelText: 'First Name',
                   ))),
           Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.8,
               height: 44,
               margin: const EdgeInsets.fromLTRB(0, 14, 0, 0),
               child: TextField(
@@ -391,10 +371,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                     labelText: 'Last Name',
                   ))),
           Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.8,
               margin: const EdgeInsets.fromLTRB(0, 14, 0, 0),
               child: SizedBox(
                   height: 107,
@@ -412,10 +389,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                       )))),
           Container(
               margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.8,
               child: Row(children: const [
                 Text(
                   'Links',
@@ -423,10 +397,7 @@ class GetProfileDateState extends State<GetProfileDate> {
                 )
               ])),
           Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.8,
             child: Column(
               // children: linkWidgets,
               children: [
@@ -442,10 +413,7 @@ class GetProfileDateState extends State<GetProfileDate> {
             ),
           ),
           Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.8,
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 27, 0, 0),
                   child: Column(
@@ -477,13 +445,13 @@ class GetProfileDateState extends State<GetProfileDate> {
                                     width: 120,
                                     height: 40,
                                     margin:
-                                    const EdgeInsets.fromLTRB(0, 14, 0, 0),
+                                        const EdgeInsets.fromLTRB(0, 14, 0, 0),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         primary: Colors.grey[300],
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(12.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                       onPressed: () => {},
@@ -506,12 +474,12 @@ class GetProfileDateState extends State<GetProfileDate> {
                                           Faculty.TEC,
                                           Faculty.None
                                         ].map<DropdownMenuItem<Faculty>>(
-                                                (Faculty value) {
-                                              return DropdownMenuItem<Faculty>(
-                                                value: value,
-                                                child: Text(value.name),
-                                              );
-                                            }).toList(),
+                                            (Faculty value) {
+                                          return DropdownMenuItem<Faculty>(
+                                            value: value,
+                                            child: Text(value.name),
+                                          );
+                                        }).toList(),
                                       ),
                                     ),
                                   )
@@ -529,13 +497,13 @@ class GetProfileDateState extends State<GetProfileDate> {
                                     width: 120,
                                     height: 40,
                                     margin:
-                                    const EdgeInsets.fromLTRB(0, 14, 0, 0),
+                                        const EdgeInsets.fromLTRB(0, 14, 0, 0),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         primary: Colors.grey[300],
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(12.0)),
+                                                BorderRadius.circular(12.0)),
                                       ),
                                       onPressed: () => {},
                                       child: DropdownButton<Degree>(
@@ -554,12 +522,12 @@ class GetProfileDateState extends State<GetProfileDate> {
                                           Degree.Bachelor,
                                           Degree.Master
                                         ].map<DropdownMenuItem<Degree>>(
-                                                (Degree value) {
-                                              return DropdownMenuItem<Degree>(
-                                                value: value,
-                                                child: Text(value.name),
-                                              );
-                                            }).toList(),
+                                            (Degree value) {
+                                          return DropdownMenuItem<Degree>(
+                                            value: value,
+                                            child: Text(value.name),
+                                          );
+                                        }).toList(),
                                       ),
                                     ),
                                   )
@@ -572,36 +540,37 @@ class GetProfileDateState extends State<GetProfileDate> {
                     ],
                   ))),
           Container(
-              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-              width: 243,
-              height: 51,
-              child: ElevatedButton(
+            margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+            width: 243,
+            height: 51,
+            child: ElevatedButton(
+              onPressed: () {
+                var _fName = _firstNameController.text;
+                var _lName = _lastNameController.text;
+                var _bio = _bioController.text;
 
-                  onPressed: () {
-                    var _fName = _firstNameController.text;
-                    var _lName = _lastNameController.text;
-                    var _bio = _bioController.text;
-
-                    profile.setFirstName(_fName);
-                    profile.setLastName(_lName);
-                    profile.setBio(_bio);
-                    profile.setImageLocation(photoLocation);
-                    profile.setLinks(this.links);
-                    profile.setFaculty(this.faculty);
-                    profile.setDegree(this.degree);
+                profile.setFirstName(_fName);
+                profile.setLastName(_lName);
+                profile.setBio(_bio);
+                profile.setImageLocation(photoLocation);
+                profile.setLinks(this.links);
+                profile.setFaculty(this.faculty);
+                profile.setDegree(this.degree);
 
 // Push to Backend
 
-                    MainInitScreen.navigate(context);
+                MainInitScreen.navigate(context);
 // Finish Registration
-                  },
-                  child: const Text(
-                    'Complete',
-                    style: TextStyle(color: Colors.black),
+              },
+              child: const Text(
+                'Complete',
+                style: TextStyle(color: Colors.black),
+              ),
+              style: ElevatedButton.styleFrom(
+                  //backgroundColor: Colors.grey[300],
                   ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[300],
-                  ))),
+            ),
+          ),
         ],
       ),
     );

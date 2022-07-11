@@ -133,7 +133,7 @@ class SignupSetPasswordState extends State<SignupSetPassword> {
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300],
+                  //backgroundColor: Colors.grey[300],
                 ),
               ),
             ),

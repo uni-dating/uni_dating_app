@@ -9,26 +9,24 @@ import '../profile/profile.edit.dart';
 class LoginEnterPasswordScreen extends StatelessWidget {
   final String? email;
 
-  const LoginEnterPasswordScreen({Key? key, required this.email}) : super(key: key);
+  const LoginEnterPasswordScreen({Key? key, required this.email})
+      : super(key: key);
 
   static const String routeName = '/login/enter_password';
 
   static void navigate(BuildContext context, [String? email]) {
-
     Navigator.push(
         context,
-        MaterialPageRoute(builder:
-            (context)=> LoginEnterPasswordScreen(email: email))
-    );
-
+        MaterialPageRoute(
+            builder: (context) => LoginEnterPasswordScreen(email: email)));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: LoginEnterPassword());
+    return Scaffold(body: LoginEnterPassword());
   }
 }
+
 class LoginEnterPassword extends StatefulWidget {
   LoginEnterPassword({Key? key}) : super(key: key);
 
@@ -37,39 +35,34 @@ class LoginEnterPassword extends StatefulWidget {
 }
 
 class LoginEnterPasswordState extends State<LoginEnterPassword> {
-
   final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.8,
         child: Column(
           children: [
             Container(
-
-                height: 44,
-                margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
-                child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      labelText: 'Password',
-                    ))),
+              height: 44,
+              margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
+              child: TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  labelText: 'Password',
+                ),
+              ),
+            ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 120, 0, 0),
               width: 243,
               height: 51,
               child: ElevatedButton(
-
                 onPressed: () {
-
                   // *
                   //
                   //
@@ -98,16 +91,13 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
 
                   bool userAlreadyFilledProfile = false;
 
-                  if (passwordIsCorrect){
-
+                  if (passwordIsCorrect) {
                     if (userAlreadyFilledProfile) {
                       MainInitScreen.navigate(context);
                     } else {
                       ProfileEditScreen.navigate(context);
                     }
-
-
-                  } else{
+                  } else {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -121,19 +111,20 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
                                     })
                               ],
                             ));
-                  }},
+                  }
+                },
                 child: const Text(
                   'Continue',
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300],
-                ),),),
-
+                  //backgroundColor: Colors.grey[300],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_dating_app/ui/screens/auth/login.welcome.screen.dart';
+import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1)).then(
-      (value) => LoginWelcomeScreen.navigate(context),
+      (value) => MainInitScreen.navigate(context),
     );
     super.initState();
   }

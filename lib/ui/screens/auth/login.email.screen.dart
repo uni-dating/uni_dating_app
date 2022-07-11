@@ -13,17 +13,15 @@ class LoginEmailScreen extends StatelessWidget {
   static const String routeName = '/login/email';
 
   static void navigate(BuildContext context) {
-
     Navigator.of(context).pushNamed(routeName);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: LoginEmail());
+    return Scaffold(resizeToAvoidBottomInset: false, body: LoginEmail());
   }
 }
+
 class LoginEmail extends StatefulWidget {
   LoginEmail({Key? key}) : super(key: key);
 
@@ -32,7 +30,6 @@ class LoginEmail extends StatefulWidget {
 }
 
 class LoginEmailState extends State<LoginEmail> {
-
   final TextEditingController _emailController = TextEditingController();
 
   @override
@@ -41,36 +38,36 @@ class LoginEmailState extends State<LoginEmail> {
       child: Container(
         child: Column(
           children: [
-            Row(children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ],
+            ),
             Container(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.8,
-                height: 44,
-                margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
-                child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      labelText: 'Email',
-                    ))),
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: 44,
+              margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
+              child: TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  labelText: 'Email',
+                ),
+              ),
+            ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 120, 0, 0),
               width: 243,
               height: 51,
               child: ElevatedButton(
                 onPressed: () {
-                  if (_emailController.text.endsWith('@Student.Reutlingen-University.DE')){
-
-
+                  if (_emailController.text
+                      .endsWith('@Student.Reutlingen-University.DE')) {
                     //*
                     //
                     //
@@ -81,29 +78,33 @@ class LoginEmailState extends State<LoginEmail> {
                     //
                     // *//
 
-
                     bool exists = true;
 
-                    if ( exists ){
-                      LoginEnterPasswordScreen.navigate(context, _emailController.text);
+                    if (exists) {
+                      LoginEnterPasswordScreen.navigate(
+                        context,
+                        _emailController.text,
+                      );
                     } else {
-                      SignupSetPasswordScreen.navigate(context, _emailController.text);
+                      SignupSetPasswordScreen.navigate(
+                          context, _emailController.text);
                     }
-
                   } else {
                     showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: const Text('Warning'),
-                              content: const Text('Not valid Email'),
-                              actions: [
-                                TextButton(
-                                    child: const Text('Ok'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    })
-                              ],
-                            ));
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Warning'),
+                        content: const Text('Not valid Email'),
+                        actions: [
+                          TextButton(
+                            child: const Text('Ok'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
+                    );
                   }
                 },
                 child: const Text(
@@ -111,13 +112,13 @@ class LoginEmailState extends State<LoginEmail> {
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300],
-                ),),),
-
+                  //backgroundColor: Colors.grey[300],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-
 }

@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:uni_dating_app/utils/bloc.dart';
 import 'package:uni_dating_app/utils/provider.service.dart';
 
-class MainBloc extends Bloc {
+class NewsBloc extends Bloc {
   final _variable = BehaviorSubject<int>.seeded(0);
 
   ValueStream<int> get variable => _variable;
@@ -25,6 +25,6 @@ class MainBloc extends Bloc {
     super.dispose();
   }
 
-  static MainBloc of(BuildContext context) =>
-      ProviderService.of<MainBloc>(context);
+  static NewsBloc of(BuildContext context) =>
+      ProviderService.of<NewsBloc>(context);
 }
