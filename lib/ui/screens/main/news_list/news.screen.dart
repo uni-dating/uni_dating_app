@@ -4,6 +4,7 @@ import 'package:uni_dating_app/models/news/news.model.dart';
 import 'package:uni_dating_app/ui/resources/colors.dart';
 import 'package:uni_dating_app/utils/rx_builder.dart';
 
+import 'item/news_list.item.dart';
 import 'news.bloc.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -30,8 +31,8 @@ class _State extends State<NewsScreen> {
           child: Column(
             children: List.generate(
               sVariable.data!.length,
-              (index) => Text(
-                sVariable.data![index].description,
+              (index) => NewsListItem(
+                news: sVariable.data![index],
               ),
             ),
           ),

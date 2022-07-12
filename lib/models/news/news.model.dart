@@ -10,10 +10,14 @@ class NewsModel {
     required this.title,
     required this.description,
     required this.timePosted,
+    required this.userName,
+    required this.userPhoto,
   });
 
   final String id;
   final String userId;
+  final String userName;
+  final String userPhoto;
 
   final String title;
   final String description;
