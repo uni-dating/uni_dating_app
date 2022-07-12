@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uni_dating_app/repositories/news/network_news.repository.dart';
+import 'package:uni_dating_app/repositories/news/news.repository.dart';
 import 'package:uni_dating_app/utils/firebase.initializer.dart';
 import 'package:uni_dating_app/utils/provider.service.dart';
 
@@ -22,14 +24,14 @@ class Initializer extends StatefulWidget {
 }
 
 class _InitializerState extends State<Initializer> {
-  //late LeaderboardRepository leaderboardRepository;
+  late NewsRepository newsRepository;
 
   @override
   void initState() {
     FirebaseInitializer.initialize();
 
-    // final networkLeaderboardRepository = NetworkLeaderboardRepository();
-    // leaderboardRepository = LeaderboardRepository(networkLeaderboardRepository);
+     final networkNewsRepository = NetworkNewsRepository();
+     newsRepository = NewsRepository(networkNewsRepository);
 
     super.initState();
   }
@@ -38,7 +40,7 @@ class _InitializerState extends State<Initializer> {
   Widget build(BuildContext context) {
     return ProviderService(
       data: <Type, dynamic>{
-        //LeaderboardRepository: leaderboardRepository,
+        NewsRepository: newsRepository,
       },
       builder: (context) {
         return widget.builder(context, '/');

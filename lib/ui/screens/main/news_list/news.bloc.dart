@@ -2,27 +2,20 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uni_dating_app/models/news/news.model.dart';
+import 'package:uni_dating_app/repositories/news/news.repository.dart';
 import 'package:uni_dating_app/utils/bloc.dart';
 import 'package:uni_dating_app/utils/provider.service.dart';
 
 class NewsBloc extends Bloc {
-  final _variable = BehaviorSubject<int>.seeded(0);
+  NewsBloc(this.newsRepository);
 
-  ValueStream<int> get variable => _variable;
+  final NewsRepository newsRepository;
 
-  void updateValue() {
-    _variable.add(Random().nextInt(10000));
-  }
+  ValueStream<List<NewsModel>?> get news => newsRepository.news;
 
-  Future<void> uploadNewPost(String text) async {
-    return;
-  }
-
-  @override
-  void dispose() {
-    _variable.close();
-
-    super.dispose();
+  Future<void> setNewsStream() async {
+    await newsRepository.setNewsStream();
   }
 
   static NewsBloc of(BuildContext context) =>

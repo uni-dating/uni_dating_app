@@ -1,13 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:animated_gesture_detector/animated_gesture_detector.dart';
 import 'package:flutter/material.dart';
-import 'package:uni_dating_app/ui/resources/colors.dart';
 import 'package:uni_dating_app/ui/resources/dimens.dart';
-import 'package:uni_dating_app/ui/screens/main/news_list/news.screen.dart';
-import 'package:uni_dating_app/utils/rx_builder.dart';
 
 import 'main.bloc.dart';
-import 'main_init.screen.dart';
 import 'news_list/news_init.screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,38 +20,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final value = RxBuilder<int>(
-      stream: MainBloc.of(context).variable,
-      builder: (context, sVariable) {
-        if (sVariable.data == null) {
-          return const SizedBox();
-        }
-
-        return Text(sVariable.data.toString());
-      },
-    );
-
-    final button = AnimatedGestureDetector(
-      onTap: () => MainBloc.of(context).updateValue(),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          color: ColorsResource.primary,
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
-        child: const Text(
-          'Change string',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => _displayTextInputDialog(MainBloc.of(context)),
@@ -82,15 +46,17 @@ class _MainScreenState extends State<MainScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        children: [
+        children: const [
           NewsInitScreen(),
-          const Center(child: const Text('Profile')),
+          Center(child: Text('Profile')),
         ],
       ),
     );
   }
 
   Future<void> _displayTextInputDialog(MainBloc bloc) async {
+    newPostController.clear();
+
     return showDialog(
       context: context,
       builder: (context) {
@@ -121,10 +87,7 @@ class _MainScreenState extends State<MainScreen> {
                 const Spacer(),
                 AnimatedGestureDetector(
                   onTap: () {
-                    print("im here");
-                    bloc.uploadNewPost(
-                      newPostController.text,
-                    );
+                    bloc.uploadNewPost(newPostController.text);
                     Navigator.pop(context);
                   },
                   child: Container(

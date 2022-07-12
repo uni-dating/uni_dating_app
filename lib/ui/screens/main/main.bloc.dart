@@ -1,28 +1,26 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:uni_dating_app/models/news/news.model.dart';
+import 'package:uni_dating_app/repositories/news/news.repository.dart';
 import 'package:uni_dating_app/utils/bloc.dart';
 import 'package:uni_dating_app/utils/provider.service.dart';
+import 'package:uuid/uuid.dart';
 
 class MainBloc extends Bloc {
-  final _variable = BehaviorSubject<int>.seeded(0);
+  MainBloc(this.newsRepository);
 
-  ValueStream<int> get variable => _variable;
-
-  void updateValue() {
-    _variable.add(Random().nextInt(10000));
-  }
+  final NewsRepository newsRepository;
 
   Future<void> uploadNewPost(String text) async {
-    return;
-  }
-
-  @override
-  void dispose() {
-    _variable.close();
-
-    super.dispose();
+    await newsRepository.addLeader(
+      NewsModel(
+        id: const Uuid().v1(),
+        userId: '-1',
+        title: '',
+        description: text,
+        timePosted: DateTime.now(),
+      ),
+    );
   }
 
   static MainBloc of(BuildContext context) =>

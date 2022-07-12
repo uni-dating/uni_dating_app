@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_dating_app/ui/resources/colors.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
-import 'package:uni_dating_app/models/profile/profile.model.dart';
+import 'package:uni_dating_app/models/profile/user.info.model.dart';
 
 import '../main/main.screen.dart';
 
@@ -41,7 +41,7 @@ class GetProfileDateState extends State<GetProfileDate> {
   // VARIABLE WITH ALL THE INFO ABOUT USER
   //
   // * //
-  static ProfileModel profile = ProfileModel(links: []);
+  static UserInfoModel profile = UserInfoModel(links: []);
 
   // *
   //

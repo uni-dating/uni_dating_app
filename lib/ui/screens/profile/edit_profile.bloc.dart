@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:uni_dating_app/models/profile/profile.model.dart';
+import 'package:uni_dating_app/models/profile/user.info.model.dart';
 import 'package:uni_dating_app/utils/bloc.dart';
 import 'package:uni_dating_app/utils/provider.service.dart';
+import 'package:uuid/uuid.dart';
 
 class EditProfileBloc extends Bloc {
-  final _profile = BehaviorSubject<ProfileModel?>.seeded(null);
+  final _profile = BehaviorSubject<UserInfoModel?>.seeded(null);
 
-  ValueStream<ProfileModel?> get profile => _profile;
+  ValueStream<UserInfoModel?> get profile => _profile;
 
   ///TODO(Andrii): get profile from backend
   Future<void> getProfile() async {
     _profile.add(
-      ProfileModel(
-        id: 0,
+      UserInfoModel(
+        id: const Uuid().v1(),
         username: 'My user name',
         school: '1', links: [],
       ),
