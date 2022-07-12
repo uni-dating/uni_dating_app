@@ -5,6 +5,7 @@ import 'package:uni_dating_app/ui/resources/dimens.dart';
 
 import 'main.bloc.dart';
 import 'news_list/news_init.screen.dart';
+import 'profile/profile_init.screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
         child: const Icon(Icons.add, color: Colors.black),
         backgroundColor: Colors.yellow,
       ),
+      extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
         icons: const [Icons.home, Icons.person],
@@ -48,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: const [
           NewsInitScreen(),
-          Center(child: Text('Profile')),
+          ProfileInitScreen(),
         ],
       ),
     );

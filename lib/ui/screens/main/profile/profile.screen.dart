@@ -3,35 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:uni_dating_app/models/news/news.model.dart';
 import 'package:uni_dating_app/utils/rx_builder.dart';
 
-import 'item/news_list.item.dart';
-import 'news.bloc.dart';
+import 'header/profile.header.dart';
+import 'item/profile_list.item.dart';
+import 'profile.bloc.dart';
 
-class NewsScreen extends StatefulWidget {
-  const NewsScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<NewsScreen> createState() => _State();
+  State<ProfileScreen> createState() => _State();
 }
 
-class _State extends State<NewsScreen> {
-  final pageController = PageController();
-
+class _State extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final list = RxBuilder<List<NewsModel>?>(
-      stream: NewsBloc.of(context).news,
+      stream: ProfileBloc.of(context).news,
       builder: (context, sVariable) {
         if (sVariable.data == null) {
           return const CupertinoActivityIndicator();
         }
 
-        return SingleChildScrollView(
-          child: Column(
-            children: List.generate(
-              sVariable.data!.length,
-              (index) => NewsListItem(
-                news: sVariable.data![index],
-              ),
+        return Column(
+          children: List.generate(
+            sVariable.data!.length,
+            (index) => ProfileListItem(
+              news: sVariable.data![index],
             ),
           ),
         );
@@ -41,7 +38,7 @@ class _State extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Main',
+          'Profile',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -50,7 +47,14 @@ class _State extends State<NewsScreen> {
         elevation: .0,
         automaticallyImplyLeading: false,
       ),
-      body: list,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const ProfileHeader(),
+            list,
+          ],
+        ),
+      ),
     );
   }
 }
