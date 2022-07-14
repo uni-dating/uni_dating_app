@@ -18,7 +18,7 @@ Map<String, dynamic> _$LinkToJson(Link instance) => <String, dynamic>{
 
 UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
     UserInfoModel(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       username: json['username'] as String?,
       school: json['school'] as String?,
       firstName: json['firstName'] as String?,

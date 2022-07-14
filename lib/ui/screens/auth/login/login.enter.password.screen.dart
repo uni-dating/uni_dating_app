@@ -1,10 +1,6 @@
-import 'package:animated_gesture_detector/animated_gesture_detector.dart';
 import 'package:flutter/material.dart';
-import 'package:uni_dating_app/ui/resources/colors.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
-
-import '../main/main.screen.dart';
-import '../profile/profile.edit.dart';
+import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
 
 class LoginEnterPasswordScreen extends StatelessWidget {
   final String? email;
@@ -16,9 +12,11 @@ class LoginEnterPasswordScreen extends StatelessWidget {
 
   static void navigate(BuildContext context, [String? email]) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LoginEnterPasswordScreen(email: email)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginEnterPasswordScreen(email: email),
+      ),
+    );
   }
 
   @override
@@ -45,7 +43,6 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
         child: Column(
           children: [
             Container(
-              height: 44,
               margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
               child: TextField(
                 controller: _emailController,
@@ -118,8 +115,8 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(
-                  //backgroundColor: Colors.grey[300],
-                ),
+                    //backgroundColor: Colors.grey[300],
+                    ),
               ),
             ),
           ],

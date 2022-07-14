@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uni_dating_app/ui/screens/auth/login.email.screen.dart';
+import 'package:uni_dating_app/ui/screens/auth/login/login.email.screen.dart';
 
 class LoginWelcomeScreen extends StatelessWidget {
   const LoginWelcomeScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/login';
+  static const String routeName = '/';
 
   static void navigate(BuildContext context) {
     Navigator.of(context).pushNamed(routeName);

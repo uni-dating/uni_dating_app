@@ -16,29 +16,29 @@ class Link {
     this.link = link;
   }
 
-  factory Link.fromJson(Map<String, dynamic> json) =>
-      _$LinkFromJson(json);
+  factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinkToJson(this);
 }
 
 @JsonSerializable()
 class UserInfoModel {
-  UserInfoModel(
-      {this.id,
-      this.username,
-      this.school,
-      this.firstName,
-      this.lastName,
-      this.bio,
-      required this.links,
-      this.faculty,
-      this.degree,
-      this.dateOfBirth,
-      this.imageLocation});
+  UserInfoModel({
+    required this.id,
+    this.username,
+    this.school,
+    this.firstName,
+    this.lastName,
+    this.bio,
+    required this.links,
+    this.faculty,
+    this.degree,
+    this.dateOfBirth,
+    this.imageLocation,
+  });
 
   //@JsonKey(required: true, includeIfNull: false)
-  final String? id;
+  final String id;
   final String? username;
   late String? school;
   late String? firstName;
@@ -84,7 +84,7 @@ class UserInfoModel {
   }
 
   UserInfoModel copyWith({
-    String? id,
+    required String id,
     String? username,
     String? school,
   }) {

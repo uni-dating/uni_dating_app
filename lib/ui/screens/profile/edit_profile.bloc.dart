@@ -22,7 +22,7 @@ class EditProfileBloc extends Bloc {
   }
 
   Future<void> updateUsername(String username) async {
-    _profile.add(_profile.value?.copyWith(username: username));
+    //_profile.add(_profile.value?.copyWith(username: username));
   }
 
   @override

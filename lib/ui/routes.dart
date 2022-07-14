@@ -5,17 +5,12 @@ Route<dynamic> _generateRoute(RouteSettings settings, BuildContext context) {
     case '/':
       return MaterialPageRoute<dynamic>(
         settings: settings,
-        builder: (context) => const SplashScreen(),
+        builder: (context) => const SplashInitScreen(),
       );
-    case LoginEmailScreen.routeName:
+    case AuthInitScreen.routeName:
       return MaterialPageRoute<dynamic>(
         settings: settings,
-        builder: (context) => const LoginEmailScreen(),
-      );
-    case LoginWelcomeScreen.routeName:
-      return MaterialPageRoute<dynamic>(
-        settings: settings,
-        builder: (context) => const LoginWelcomeScreen(),
+        builder: (context) => const AuthInitScreen(),
       );
     case ProfileEditScreen.routeName:
       return MaterialPageRoute<dynamic>(
