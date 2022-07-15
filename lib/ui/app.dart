@@ -5,6 +5,7 @@ import 'package:uni_dating_app/ui/screens/auth/login/login.email.screen.dart';
 import 'package:uni_dating_app/ui/screens/auth/main/login.welcome.screen.dart';
 import 'package:uni_dating_app/ui/screens/auth/splash/splash_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
+import 'package:uni_dating_app/ui/screens/profile/eidt_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
 
 part 'routes.dart';

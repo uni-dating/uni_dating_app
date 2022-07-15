@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:uni_dating_app/ui/screens/auth/auth.bloc.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
+import 'package:uni_dating_app/ui/screens/profile/eidt_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
+import 'package:uni_dating_app/utils/nested_navigator.dart';
 
 class LoginEnterPasswordScreen extends StatelessWidget {
   final String? email;
@@ -10,11 +13,14 @@ class LoginEnterPasswordScreen extends StatelessWidget {
 
   static const String routeName = '/login/enter_password';
 
-  static void navigate(BuildContext context, [String? email]) {
+  static void navigate(BuildContext context,
+      [String? email, String? password]) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginEnterPasswordScreen(email: email),
+        builder: (context) => LoginEnterPasswordScreen(
+          email: email,
+        ),
       ),
     );
   }
@@ -42,6 +48,7 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
         width: MediaQuery.of(context).size.width * 0.8,
         child: Column(
           children: [
+            Text('Login'),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 283, 0, 0),
               child: TextField(
@@ -59,7 +66,7 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
               width: 243,
               height: 51,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // *
                   //
                   //
@@ -70,7 +77,8 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
                   //
                   // * //
 
-                  bool passwordIsCorrect = true;
+                  var passwordIsCorrect =
+                      AuthBloc.of(context).password == _emailController.text;
 
                   // *
                   //
@@ -86,14 +94,20 @@ class LoginEnterPasswordState extends State<LoginEnterPassword> {
                   //
                   // * //
 
-                  bool userAlreadyFilledProfile = false;
+                  AuthBloc.of(context).email = _emailController.text;
+
+                  var userAlreadyFilledProfile = false;
 
                   if (passwordIsCorrect) {
-                    if (userAlreadyFilledProfile) {
-                      MainInitScreen.navigate(context);
-                    } else {
-                      ProfileEditScreen.navigate(context);
-                    }
+                    AuthBloc.of(context).updateLocalUser();
+                      if (!mounted) return;
+
+                      final parentContext = NestedNavigator.maybeOf(context)
+                          ?.parentNavigatorRoute
+                          ?.navigator
+                          ?.context ?? context;
+                      await Navigator.pushNamedAndRemoveUntil(
+                          parentContext, MainInitScreen.routeName, (_) => false);
                   } else {
                     showDialog(
                         context: context,

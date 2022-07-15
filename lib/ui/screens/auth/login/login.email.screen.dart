@@ -70,19 +70,24 @@ class LoginEmailState extends State<LoginEmail> {
                 if (_emailController.text
                     .toLowerCase()
                     .endsWith(Dimens.endEmail)) {
-                  final isExists = await AuthBloc.of(context)
+                  final model = await AuthBloc.of(context)
                       .checkIsUserExists(_emailController.text);
 
                   if (!mounted) return;
+                  AuthBloc.of(context).email = _emailController.text;
 
-                  if (isExists) {
+                  if (model != null) {
+                    AuthBloc.of(context).password = model.password!;
+
                     LoginEnterPasswordScreen.navigate(
                       context,
                       _emailController.text,
                     );
                   } else {
                     SignupSetPasswordScreen.navigate(
-                        context, _emailController.text);
+                      context,
+                      _emailController.text,
+                    );
                   }
                 } else {
                   await showDialog(

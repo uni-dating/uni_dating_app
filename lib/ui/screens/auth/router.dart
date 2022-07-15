@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_dating_app/ui/screens/auth/login/login.email.screen.dart';
+import 'package:uni_dating_app/ui/screens/profile/eidt_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
 import 'package:uni_dating_app/utils/nested_navigator.dart';
 
@@ -20,10 +21,10 @@ class TheAuthRouter extends StatelessWidget {
           settings: settings,
           builder: (context) => const LoginWelcomeScreen(),
         );
-      case ProfileEditScreen.routeName:
+      case EditInitScreen.routeName:
         return MaterialPageRoute<dynamic>(
           settings: settings,
-          builder: (context) => const ProfileEditScreen(),
+          builder: (context) => const EditInitScreen(),
         );
       default:
         throw ArgumentError.value(

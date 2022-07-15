@@ -49,6 +49,20 @@ class UsersRepository {
     }
   }
 
+  Future<Response<bool>> updateUserOnServer(UserInfoModel model) async {
+    try {
+      final info = await _networkRepo.updateUser(model);
+
+      if (info) {
+        updateUser(model);
+      }
+
+      return const Response.value(true);
+    } on ServerError catch (e) {
+      return Response.error(BaseError.fromDynamic(e));
+    }
+  }
+
   void updateUser(UserInfoModel? model) {
     _user.add(model);
     saveLocalUserId(model?.id);
@@ -68,13 +82,13 @@ class UsersRepository {
     return result;
   }
 
-  Future<bool> isUserAlreadyExists(String email) async {
+  Future<UserInfoModel?> isUserAlreadyExists(String email) async {
     try {
       final info = await _networkRepo.isUserAlreadyExists(email);
 
       return info;
     } on ServerError catch (e) {
-      return false;
+      return null;
     }
   }
 

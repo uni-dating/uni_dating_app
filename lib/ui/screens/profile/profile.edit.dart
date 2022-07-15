@@ -7,7 +7,9 @@ import 'package:uni_dating_app/ui/resources/colors.dart';
 import 'package:uni_dating_app/ui/screens/auth/auth.bloc.dart';
 import 'package:uni_dating_app/ui/screens/main/main_init.screen.dart';
 import 'package:uni_dating_app/models/profile/user.info.model.dart';
+import 'package:uni_dating_app/ui/screens/profile/edit_profile.bloc.dart';
 import 'package:uni_dating_app/utils/nested_navigator.dart';
+import 'package:uni_dating_app/utils/simple_code.dart';
 import 'package:uuid/uuid.dart';
 
 import '../main/main.screen.dart';
@@ -16,12 +18,6 @@ enum WidgetType { BASIC, REMOVABLE }
 
 class ProfileEditScreen extends StatelessWidget {
   const ProfileEditScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/edit_profile';
-
-  static void navigate(BuildContext context) {
-    Navigator.of(context).pushNamed(routeName);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +53,7 @@ class GetProfileDateState extends State<GetProfileDate> {
   // VARIABLE WITH ALL THE INFO ABOUT USER
   //
   // * //
-  static UserInfoModel profile = UserInfoModel(
+  UserInfoModel profile = UserInfoModel(
     links: [],
     id: const Uuid().v1(),
   );
@@ -277,14 +273,23 @@ class GetProfileDateState extends State<GetProfileDate> {
     );
   }
 
-  // void dropDownCallback(Faculty? selectedValue){
-  //   if(selectedValue is Faculty){
-  //     setState((){
-  //       faculty = selectedValue;
-  //     });
-  //   }
-  // }
+  @override
+  void initState() {
+    runAfterBuild((duration) {
+      if (EditProfileBloc.of(context).user.value == null) return;
+      print('im here');
+      profile = EditProfileBloc.of(context).user.value!;
+      _firstNameController.text = profile.firstName ?? '';
+      _lastNameController.text = profile.lastName ?? '';
+      _bioController.text = profile.bio ?? '';
 
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
@@ -509,53 +514,51 @@ class GetProfileDateState extends State<GetProfileDate> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                        width: 88,
-                                        child: Text('Degree',
-                                            style: TextStyle(fontSize: 18))),
-                                    Container(
-                                      width: 120,
-                                      height: 40,
-                                      margin: const EdgeInsets.fromLTRB(
-                                          0, 14, 0, 0),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors.grey[300],
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0)),
-                                        ),
-                                        onPressed: () => {},
-                                        child: DropdownButton<Degree>(
-                                          value: degree,
-                                          elevation: 16,
-                                          underline: Container(
-                                            height: 2,
-                                          ),
-                                          onChanged: (Degree? newValue) {
-                                            setState(() {
-                                              degree = newValue!;
-                                            });
-                                          },
-                                          items: <Degree>[
-                                            Degree.None,
-                                            Degree.Bachelor,
-                                            Degree.Master
-                                          ].map<DropdownMenuItem<Degree>>(
-                                              (Degree value) {
-                                            return DropdownMenuItem<Degree>(
-                                              value: value,
-                                              child: Text(value.name),
-                                            );
-                                          }).toList(),
-                                        ),
+                              Column(
+                                children: [
+                                  const SizedBox(
+                                      width: 88,
+                                      child: Text('Degree',
+                                          style: TextStyle(fontSize: 18))),
+                                  Container(
+                                    width: 120,
+                                    height: 40,
+                                    margin:
+                                        const EdgeInsets.fromLTRB(0, 14, 0, 0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.grey[300],
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12.0)),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                      onPressed: () => {},
+                                      child: DropdownButton<Degree>(
+                                        value: degree,
+                                        elevation: 16,
+                                        underline: Container(
+                                          height: 2,
+                                        ),
+                                        onChanged: (Degree? newValue) {
+                                          setState(() {
+                                            degree = newValue!;
+                                          });
+                                        },
+                                        items: <Degree>[
+                                          Degree.None,
+                                          Degree.Bachelor,
+                                          Degree.Master
+                                        ].map<DropdownMenuItem<Degree>>(
+                                            (Degree value) {
+                                          return DropdownMenuItem<Degree>(
+                                            value: value,
+                                            child: Text(value.name),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
                           ),
@@ -582,15 +585,25 @@ class GetProfileDateState extends State<GetProfileDate> {
                     ..setDegree(degree);
 
 // Push to Backend
-                  final result = await AuthBloc.of(context).addUser(profile);
+                  bool result;
+                  if (EditProfileBloc.of(context).user.value == null) {
+                    profile
+                      ..setEmail(AuthBloc.of(context).email)
+                      ..setPassword(AuthBloc.of(context).password);
+
+                    result = await AuthBloc.of(context).addUser(profile);
+                  } else {
+                    result =
+                        await EditProfileBloc.of(context).updateUser(profile);
+                  }
 
                   if (result) {
                     if (!mounted) return;
 
-                    final parentContext = NestedNavigator.of(context)
-                        .parentNavigatorRoute!
-                        .navigator!
-                        .context;
+                    final parentContext = NestedNavigator.maybeOf(context)
+                        ?.parentNavigatorRoute
+                        ?.navigator
+                        ?.context ?? context;
                     await Navigator.pushNamedAndRemoveUntil(
                         parentContext, MainInitScreen.routeName, (_) => false);
                   }

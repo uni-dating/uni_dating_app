@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uni_dating_app/ui/screens/auth/auth.bloc.dart';
 import 'package:uni_dating_app/ui/screens/auth/main/login.welcome.screen.dart';
+import 'package:uni_dating_app/ui/screens/profile/eidt_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
 
 class SignupSetPasswordScreen extends StatelessWidget {
@@ -55,6 +57,7 @@ class SignupSetPasswordState extends State<SignupSetPassword> {
     return Center(
       child: Column(
         children: [
+          Text('Signup'),
           Container(
             width: MediaQuery.of(context).size.width * 0.8,
             height: 44,
@@ -91,6 +94,8 @@ class SignupSetPasswordState extends State<SignupSetPassword> {
               onPressed: () {
                 if (_passwordController.text ==
                     _passwordConfirmController.text) {
+                  AuthBloc.of(context).password = _passwordConfirmController.text;
+
                   //*
                   //
                   //
@@ -102,7 +107,7 @@ class SignupSetPasswordState extends State<SignupSetPassword> {
                   //
                   // *//
 
-                  ProfileEditScreen.navigate(context);
+                  EditInitScreen.navigate(context);
 
                 } else {
                   showDialog(

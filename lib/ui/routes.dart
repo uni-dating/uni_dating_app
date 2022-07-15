@@ -12,10 +12,10 @@ Route<dynamic> _generateRoute(RouteSettings settings, BuildContext context) {
         settings: settings,
         builder: (context) => const AuthInitScreen(),
       );
-    case ProfileEditScreen.routeName:
+    case EditInitScreen.routeName:
       return MaterialPageRoute<dynamic>(
         settings: settings,
-        builder: (context) => const ProfileEditScreen(),
+        builder: (context) => const EditInitScreen(),
       );
     case MainInitScreen.routeName:
       return MaterialPageRoute<dynamic>(

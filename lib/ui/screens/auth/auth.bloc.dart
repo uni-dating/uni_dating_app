@@ -10,14 +10,27 @@ class AuthBloc extends Bloc {
 
   final UsersRepository usersRepository;
 
+  late String email;
+  late String password;
+
+  UserInfoModel? tmpUser;
+
   Future<bool> addUser(UserInfoModel model) {
     usersRepository.addUser(model);
 
     return Future.value(true);
   }
 
-  Future<bool> checkIsUserExists(String email) =>
-      usersRepository.isUserAlreadyExists(email);
+  void updateLocalUser() {
+    usersRepository.updateUser(tmpUser);
+  }
+
+  Future<UserInfoModel?> checkIsUserExists(String email) async {
+    final result = await usersRepository.isUserAlreadyExists(email);
+    tmpUser = result;
+
+    return result;
+  }
 
   static AuthBloc of(BuildContext context) =>
       ProviderService.of<AuthBloc>(context);

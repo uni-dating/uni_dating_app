@@ -16,17 +16,26 @@ class NetworkUsersRepository {
   }
 
   Future<bool> addUser(UserInfoModel model) async {
-    final response = await _repo.getCollection('users').add(model.toJson());
+    final response =
+        await _repo.getCollection('users').doc(model.id).set(model.toJson());
 
     return true;
   }
 
-  Future<bool> isUserAlreadyExists(String email) async {
+  Future<bool> updateUser(UserInfoModel model) async {
+    final response =
+        await _repo.getCollection('users').doc(model.id).update(model.toJson());
+
+    return true;
+  }
+
+  Future<UserInfoModel?> isUserAlreadyExists(String email) async {
     final response = await _repo
         .getCollection('users')
         .where('email', isEqualTo: email)
         .get();
 
-    return response.docs.isNotEmpty;
+    if(!response.docs.first.exists) return null;
+    return UserInfoModel.fromJson(response.docs.first.data() as Map<String, dynamic>);
   }
 }

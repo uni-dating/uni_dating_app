@@ -24,6 +24,8 @@ class Link {
 @JsonSerializable()
 class UserInfoModel {
   UserInfoModel({
+    this.email,
+    this.password,
     required this.id,
     this.username,
     this.school,
@@ -40,6 +42,8 @@ class UserInfoModel {
   //@JsonKey(required: true, includeIfNull: false)
   final String id;
   final String? username;
+  late String? email;
+  late String? password;
   late String? school;
   late String? firstName;
   late String? lastName;
@@ -81,6 +85,14 @@ class UserInfoModel {
 
   void setImageLocation(String location) {
     this.imageLocation = location;
+  }
+
+  void setEmail(String email) {
+    this.email = email;
+  }
+
+  void setPassword(String password) {
+    this.password = password;
   }
 
   UserInfoModel copyWith({

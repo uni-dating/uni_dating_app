@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_dating_app/models/profile/user.info.model.dart';
 import 'package:uni_dating_app/ui/screens/main/profile/profile.bloc.dart';
+import 'package:uni_dating_app/ui/screens/profile/eidt_init.screen.dart';
 import 'package:uni_dating_app/ui/screens/profile/profile.edit.dart';
 import 'package:uni_dating_app/utils/rx_builder.dart';
 
@@ -16,7 +17,7 @@ class ProfileHeader extends StatelessWidget {
         _mainInfo(context),
         const SizedBox(height: 23),
         AnimatedGestureDetector(
-          onTap: () => ProfileEditScreen.navigate(context),
+          onTap: () => EditInitScreen.navigate(context),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 28.0),
             width: double.infinity,
