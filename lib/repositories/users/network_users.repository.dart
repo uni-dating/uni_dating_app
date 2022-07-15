@@ -5,7 +5,7 @@ import 'package:uni_dating_app/repositories/base/remote_static.repository.dart';
 class NetworkUsersRepository {
   final _repo = RemoteStaticRepository();
 
-  Future<UserInfoModel?> getUser(String id) async {
+  Future<UserInfoModel?> getUser(String? id) async {
     final response = await _repo.getCollection('users').get();
 
     final result = response.docs

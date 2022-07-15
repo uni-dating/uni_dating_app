@@ -21,7 +21,7 @@ class UsersRepository {
 
   ValueStream<UserInfoModel?> get user => _user;
 
-  Future<Response<UserInfoModel?>> getUser(String id) async {
+  Future<Response<UserInfoModel?>> getUser(String? id) async {
     try {
       final info = await _networkRepo.getUser(id);
 
