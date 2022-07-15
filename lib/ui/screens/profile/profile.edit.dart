@@ -283,6 +283,9 @@ class GetProfileDateState extends State<GetProfileDate> {
       _lastNameController.text = profile.lastName ?? '';
       _bioController.text = profile.bio ?? '';
 
+      links = profile.links;
+      faculty = profile.faculty ?? Faculty.None;
+      degree = profile.degree ?? Degree.None;
       setState(() {});
     });
 
